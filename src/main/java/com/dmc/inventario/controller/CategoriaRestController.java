@@ -1,13 +1,11 @@
 package com.dmc.inventario.controller;
 
+import com.dmc.inventario.models.Categoria;
 import com.dmc.inventario.response.CategoriaResponseRest;
 import com.dmc.inventario.services.ICategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -23,6 +21,13 @@ public class CategoriaRestController {
     @GetMapping("/categorias/{id}")
     public ResponseEntity<CategoriaResponseRest> buscarCategoriasPorId(@PathVariable Long id){
         ResponseEntity<CategoriaResponseRest> respuesta = servicio.searchById(id);
+        return respuesta;
+    }
+
+
+    @PostMapping("/categorias")
+    public ResponseEntity<CategoriaResponseRest> registrar(@RequestBody Categoria categoria){
+        ResponseEntity<CategoriaResponseRest> respuesta = servicio.save(categoria);
         return respuesta;
     }
 }
