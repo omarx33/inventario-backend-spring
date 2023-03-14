@@ -36,4 +36,10 @@ public class CategoriaRestController {
         ResponseEntity<CategoriaResponseRest> respuesta = servicio.update(categoria,id);
         return respuesta;
     }
+
+    @DeleteMapping("/categoria/{id}")
+    public ResponseEntity<CategoriaResponseRest> update(@PathVariable Long id){
+        ResponseEntity<CategoriaResponseRest> respuesta = servicio.deleteById(id);
+        return respuesta;
+    }
 }
